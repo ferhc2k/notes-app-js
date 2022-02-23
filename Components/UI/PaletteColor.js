@@ -8,14 +8,24 @@ const colorComponent = (color) => {
     item.style.backgroundColor = color;
     item.setAttribute("data-color", color);
     item.addEventListener("click", (e) => {
-        setColorNote(e.target.parentElement.dataset.id, e.target.dataset.color);
+        setColorNote(e.target.parentElement.parentElement.dataset.id, e.target.dataset.color);
     })
     return item;
 }
 
 export const PaletteColor = () => {
+    const container = document.createElement("div");
+    container.addEventListener("click", closeModal);
+    container.classList.add("palette-color-container");
     const palette = document.createElement("div");
     palette.classList.add("palette-color");
     colors.map(color => palette.appendChild(colorComponent(color)));
-    return palette;
+    container.appendChild(palette);
+    return container;
 }
+
+const closeModal = (e) => {
+    if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove("palette-color-visible");
+    } 
+};

@@ -46,10 +46,11 @@ const setCardsAction = {
 export const CardNote = (data) => {
     let page = location.hash.split("/")[1];
     const card = document.createElement("div");
-    card.style.background = data.color;
+    card.style.cssText = `background:${data.color};`
     card.classList.add("card-note");
-    card.id = data.id;
-    card.textContent = data.content;
+    card.setAttribute("id", data.id);
+    card.innerHTML = `<span class="title">${data.title}</span>`
+    card.innerHTML += `<span class="excerpt">${data.content}</span>`
     card.innerHTML += `<p>Ultima actualización: ${moment(moment(data.date).format()).fromNow()}.</p>`;
     card.appendChild(setCardsAction[page](data.id));
     return card;

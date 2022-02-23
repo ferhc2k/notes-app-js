@@ -1,4 +1,4 @@
-import { generateMessage } from "./Message.js";
+import { generateToast } from "./Toast.js";
 import { addNodo } from "../../Helpers/Functions.js";
 import { createNote } from "../../Helpers/ProcessData.js";
 import { CardNote } from "./CardNote.js";
@@ -12,7 +12,7 @@ const Form = () => {
             <input name="title" placeholder="Titulo" required="true">
         </div>
         <div class="form-input">
-            <textarea name="content" rows="4" placeholder="Añade una nota" required="true"></textarea>
+            <textarea name="content" rows="10" placeholder="Añade una nota" required="true"></textarea>
         </div>
         <button class="button-primary">Crear nota <i class="ri-save-line"></i></button>
     `;
@@ -46,6 +46,6 @@ const handleSubmit = (e) => {
     e.currentTarget.parentElement.parentElement.classList.remove("modal-container-visible");
     e.currentTarget.reset();
     addNodo(CardNote(note, "main"));
-    generateMessage("Nota creada correctamente");
+    generateToast("Nota creada correctamente");
     
 };
