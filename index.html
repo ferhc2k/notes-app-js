@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Notes</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main id="root"></main>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.js"></script>
+<script src="index.js" type="module"></script>
+<script>
+    const setLineIndicator = (element) => {
+        const lineIndicator = document.querySelector(".line-indicator");
+        lineIndicator.style.cssText = `top: ${element.getBoundingClientRect().top}px; height: ${element.clientHeight}px`;
+        element.classList.add("sidebar-menu-item-select");
+    };
+
+    const openMenuItem = (e) => {
+        const sidebarMenu = document.querySelector(".sidebar-menu");
+        Array.from(sidebarMenu.children, (item) => item.classList.remove("sidebar-menu-item-select"));
+        setLineIndicator(e.currentTarget);
+    };
+
+    const actionSidebar = (e) => {
+        const actionSidebar = document.getElementById("action-sidebar");
+        const sidebar = document.querySelector(".sidebar");
+        const sidebarMenuItem = document.querySelectorAll(".sidebar-menu-item");
+    
+        sidebar.classList.toggle("sidebar-active");
+        for (let menuItem of sidebarMenuItem) {
+            if (sidebar.classList.contains("sidebar-active")) {
+                actionSidebar.classList.replace("ri-menu-line", "ri-close-fill");
+                menuItem.querySelector("span").removeAttribute("class");
+            } else {
+                actionSidebar.classList.replace("ri-close-fill", "ri-menu-line");
+                menuItem.querySelector("span").classList.add("sidebar-tooltip");
+            }
+        }
+    }
+
+</script>
+</html>
