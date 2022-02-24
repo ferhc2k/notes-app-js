@@ -1,4 +1,5 @@
 import { Sidebar } from "./Components/Sidebar/Sidebar.js";
+import { ContainerApp } from "./Components/UI/ContainerApp.js";
 import { Modal } from "./Components/UI/Modal.js";
 import { Router } from "./Helpers/Router.js";
 import { PaletteColor } from "./Components/UI/PaletteColor.js";
@@ -9,7 +10,7 @@ const $ = (select) => document.querySelector(select);
 
 const App = () => {
     root.appendChild(Sidebar());
-    root.innerHTML += "<section id='app'></section>";
+    root.appendChild(ContainerApp());
     $("#app").appendChild(Router());
     document.body.appendChild(Modal());
     document.body.appendChild(PaletteColor());

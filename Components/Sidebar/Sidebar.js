@@ -3,11 +3,10 @@ const Header = () => {
     const icon = document.createElement("i");
     const title = document.createElement("h1");
     header.classList.add("sidebar-header");
-    icon.setAttribute("id", "action-sidebar");
-    icon.classList.add("sidebar-header-icon");
-    icon.classList.add("ri-menu-line");
-    icon.setAttribute("onclick", "actionSidebar(event)")
+    icon.classList.add("sidebar-header-icon", "ri-menu-line");
     title.classList.add("sidebar-title");
+    icon.setAttribute("id", "toggle-sidebar");
+    icon.addEventListener("click", toggleSidebar);
     title.textContent = "Keep";
     header.appendChild(icon);
     header.appendChild(title)
@@ -25,12 +24,11 @@ const Link = (name, url, classIcon) => {
     const link = document.createElement("a");
     const span = document.createElement("span");
     const icon = document.createElement("i");
-    link.href = url;
-    link.setAttribute("onclick", "openMenuItem(event)")
     link.classList.add("sidebar-menu-item");
-    icon.classList.add("sidebar-icon");
-    icon.classList.add(classIcon);
+    icon.classList.add("sidebar-icon", classIcon);
     span.classList.add("sidebar-tooltip");
+    link.setAttribute("href", url);
+    link.addEventListener("click", openMenuItem);
     span.textContent = name;
     link.appendChild(icon);
     link.appendChild(span);
@@ -55,3 +53,31 @@ export const Sidebar = () => {
     return sidebar;
 }
 
+const setLineIndicator = (element) => {
+    const lineIndicator = document.querySelector(".line-indicator");
+    lineIndicator.style.cssText = `top: ${element.getBoundingClientRect().top}px; height: ${element.clientHeight}px`;
+    element.classList.add("sidebar-menu-item-select");
+};
+
+const openMenuItem = (e) => {
+    const sidebarMenu = document.querySelector(".sidebar-menu");
+    Array.from(sidebarMenu.children, (item) => item.classList.remove("sidebar-menu-item-select"));
+    setLineIndicator(e.currentTarget);
+};
+
+const toggleSidebar = () => {
+    const toggle = document.getElementById("toggle-sidebar");
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarMenuItem = document.querySelectorAll(".sidebar-menu-item");
+
+    sidebar.classList.toggle("sidebar-active");
+    for (let menuItem of sidebarMenuItem) {
+        if (sidebar.classList.contains("sidebar-active")) {
+            toggle.classList.replace("ri-menu-line", "ri-close-fill");
+            menuItem.querySelector("span").removeAttribute("class");
+        } else {
+            toggle.classList.replace("ri-close-fill", "ri-menu-line");
+            menuItem.querySelector("span").classList.add("sidebar-tooltip");
+        }
+    }
+}

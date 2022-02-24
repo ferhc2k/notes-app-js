@@ -3,7 +3,6 @@ import { Main } from "../Components/Main/Main.js";
 import { Archive } from "../Components/Archive/Archive.js";
 import { Trash } from "../Components/Trash/Trash.js";
 
-
 export const Router = () => {
     const {hash} = location;
     if(!hash || hash === "#/notes") {

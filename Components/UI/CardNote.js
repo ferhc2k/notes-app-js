@@ -44,14 +44,16 @@ const setCardsAction = {
 }
 
 export const CardNote = (data) => {
-    let page = location.hash.split("/")[1];
+    let currentPage = location.hash.split("/")[1] || "notes";
     const card = document.createElement("div");
-    card.style.cssText = `background:${data.color};`
     card.classList.add("card-note");
     card.setAttribute("id", data.id);
-    card.innerHTML = `<span class="title">${data.title}</span>`
-    card.innerHTML += `<span class="excerpt">${data.content}</span>`
-    card.innerHTML += `<p>Ultima actualización: ${moment(moment(data.date).format()).fromNow()}.</p>`;
-    card.appendChild(setCardsAction[page](data.id));
+    card.style.backgroundColor = data.color;
+    card.innerHTML = `
+        <p class="title">${data.title}</p>
+        <p class="excerpt">${data.content}</p>
+        <p>Ultima actualización: ${moment(moment(data.date).format()).fromNow()}.</p>
+    `;
+    card.appendChild(setCardsAction[currentPage](data.id));
     return card;
 }

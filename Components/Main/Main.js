@@ -18,20 +18,18 @@ export const Header = () => {
 const Data = (dataFilter) => {
     const fragment = document.createDocumentFragment();
     const data = document.createElement("div");
-    data.setAttribute("id", "data-main");
     data.classList.add("section-data");
     if(dataFilter.length > 0) {
         dataFilter.forEach(note => fragment.appendChild(CardNote(note, "notes")));
         data.appendChild(fragment);
     }else {
-        data.innerHTML += "<p>Vacio</p>";
+        data.innerHTML = "<p>Vacio</p>";
     }
     return data;
 }
 
 export const Main = (dataFilter) => {
     const main = document.createElement("div");
-    main.setAttribute("id", "section-notes");
     main.classList.add("section-container");
     main.appendChild(Header());
     main.appendChild(Data(dataFilter));

@@ -26,7 +26,7 @@ export const Modal = () => {
     modalContainer.classList.add("modal-container");
     modalContainer.addEventListener("click", closeModal);
     modal.classList.add("modal");
-    modal.innerHTML += "<h1>Crear nota</h1>";
+    modal.innerHTML = "<h1>Crear nota</h1>";
     modal.appendChild(Form());
     modalContainer.appendChild(modal);
     return modalContainer;
@@ -38,14 +38,12 @@ const closeModal = (e) => {
     } 
 };
 
-
 const handleSubmit = (e) => {
-    const formData = new FormData(e.currentTarget);
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     const note = createNote(formData.get("title"), formData.get("content"), "main");
     e.currentTarget.parentElement.parentElement.classList.remove("modal-container-visible");
     e.currentTarget.reset();
     addNodo(CardNote(note, "main"));
-    generateToast("Nota creada correctamente");
-    
+    generateToast("Nota creada");
 };
