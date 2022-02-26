@@ -53,7 +53,7 @@ export const Sidebar = () => {
     return sidebar;
 }
 
-const setLineIndicator = (element) => {
+export const setLineIndicator = (element) => {
     const lineIndicator = document.querySelector(".line-indicator");
     lineIndicator.style.cssText = `top: ${element.getBoundingClientRect().top}px; height: ${element.clientHeight}px`;
     element.classList.add("sidebar-menu-item-select");

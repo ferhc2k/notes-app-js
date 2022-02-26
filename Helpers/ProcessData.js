@@ -12,6 +12,7 @@ class Note {
     edit(title, content) {
         this.title = title;
         this.content = content;
+        this.date = Date.now();
         updateData();
     }
     archive() {

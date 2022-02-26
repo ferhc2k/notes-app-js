@@ -363,6 +363,31 @@ section {
     cursor: pointer;
 }
 
+.card-note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: #636369;
+}
+.card-note-form input {
+    border: none;
+    outline: none;
+    background-color: #00000012;
+    color: inherit;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-family: inherit;
+}
+.card-note-form textarea {
+    border: none;
+    outline: none;
+    background-color: #00000012;
+    color: inherit;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
 
 .button-primary{
     display: flex;
@@ -399,4 +424,15 @@ section {
     100%{
         transform: scale(1);
     }
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #c0dde0;
 }

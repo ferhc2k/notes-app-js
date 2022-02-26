@@ -42,8 +42,8 @@ const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const note = createNote(formData.get("title"), formData.get("content"), "main");
-    e.currentTarget.parentElement.parentElement.classList.remove("modal-container-visible");
     e.currentTarget.reset();
     addNodo(CardNote(note, "main"));
     generateToast("Nota creada");
+    document.getElementById("modal-container").classList.remove("modal-container-visible");
 };
